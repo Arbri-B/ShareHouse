@@ -1,0 +1,116 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+/* Login */
+.log-main{
+  margin-top: 20%;
+  border: 2px solid teal;
+  border-radius: 20px;
+  width: 70%;
+  margin-left: 15%;
+  padding: 20px;
+  background-color: white;
+
+}
+
+  .s-button{
+    padding: 5px;
+    width: 20%;
+    color: teal;
+    background-color: aqua;
+    margin-bottom: 20px;
+    border-radius: 20px;
+  }
+  .s-button:hover{
+    background-color: aquamarine;
+  }
+
+  .log-lab{
+    font-weight: bolder;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+  .login-input{
+    border: 2px solid teal;
+    border-radius: 20px;
+    padding: 2px;
+  }
+
+  /* Register */
+
+  .reg-main{
+    border: 2px solid teal;
+    border-radius: 20px;
+    margin: 10%;
+    margin-left: 10%;
+    width: 80%;
+    padding: 40px;
+  }
+
+  /* Display All */
+  
+  .main-nav{
+    background-color: teal;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  .nav-btn-holder{
+    width: 20%;
+  }
+
+  .custom-color{
+    color: black;
+    border: 2px solid black;
+    background-color: aliceblue;
+  }
+
+  .card{
+    width: 80%;
+    margin: 30px 10% ;
+    border: 2px solid teal;
+    padding: 20px;
+  }
+
+  .card-text{
+    width: 50%;
+  }
+
+  .card-text-add .card-text-desc{
+    max-width: 90%;
+  }
+  .card-title{
+    font-size: xx-large;
+    text-decoration: none;
+    color: teal;
+  }
+
+  /* Create */
+
+  .create-main{
+    border: 2px solid teal;
+    border-radius: 20px;
+    margin: 5% 30px;
+    padding: 20px;
+  }
+
+  .btn-div-create{
+    margin: 10px 10%;
+  }
+
+  /* Single Post */
+
+  .single-main{
+    margin-top: 10%;
+    border: 2px solid teal;
+    border-radius: 20px;
+    width: 80%;
+    margin-left:10%;
+    padding: 20px;
+    background-color: white;
+  
+  }
