@@ -10,7 +10,7 @@ const EditPost = (props) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [address, setAddress] = useState("");
-    const [image, setImage] = useState("")
+    const [imageUrl, setImageUrl] = useState("");
 
     const navigate = useNavigate()
     const [errorMessage, setErrorMessage] = useState("");
@@ -26,7 +26,7 @@ const EditPost = (props) => {
                 setTitle(res.data.post.title)
                 setAddress(res.data.post.address)
                 setDescription(res.data.post.description)
-                setImage(res.data.post.image)
+                setImageUrl(res.data.post.imageUrl)
             })
             .catch((err) => {
                 console.log(err);
@@ -46,7 +46,7 @@ const EditPost = (props) => {
                     title,    // this is shortcut syntax for firstName: firstName,
                     address,
                     description,
-                    image
+                    imageUrl
 
                 }, {
                     withCredentials: true
@@ -57,7 +57,7 @@ const EditPost = (props) => {
                         setTitle("");
                         setAddress("");
                         setDescription("");
-                        setImage("")
+                        setImageUrl("")
                         navigate(-1)
                     })
                     .catch(err => {
@@ -73,22 +73,27 @@ const EditPost = (props) => {
 
     const deletePost = (postId) => {
         const userId = localStorage.getItem('userId');
-        if (userId == postCreatorId){
-        axios.delete(`http://localhost:8000/api/post/${id}`,{
-            withCredentials: true
-        })
-            .then(res => {
-                navigate('/posts')
+        if (userId == postCreatorId) {
+            axios.delete(`http://localhost:8000/api/post/${id}`, {
+                withCredentials: true
             })
-            .catch(err => console.log(err))
+                .then(res => {
+                    navigate('/posts')
+                })
+                .catch(err => console.log(err))
+        }
+        else {
+            setErrorMessage('You are not the creator, cant delete')
+        }
     }
-    else {
-        setErrorMessage('You are not the creator, cant delete')
-    }}
+
+    const navigateBack = () => {
+        navigate(-1);
+    };
 
 
     return (
-        <div className="px-3">
+        <div className="px-3 single-main">
             <h1 className="text-center p-2">Update Post</h1>
             {
                 errorMessage ?
@@ -96,7 +101,7 @@ const EditPost = (props) => {
                     null
             }
 
-            <form className="w-75 m-auto"  encType="multipart/form-data" onSubmit={(e) => updatePost(e)}>
+            <form className="w-75 m-auto" encType="multipart/form-data" onSubmit={(e) => updatePost(e)}>
                 <div>
                     <label className="form-label">Title :</label>
                     <input className="form-control" type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Enter the title" />
@@ -122,13 +127,19 @@ const EditPost = (props) => {
                     null
                 }
                 <div>
-                    <input type="file" accept=".png, .jpg, .jpeg" name="image" onChange={(e) => setImage(e.target.files[0])} />
+                    <label className="form-label">Image URL: </label>
+                    <input className="form-control" type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="URL goes here" pattern="https?://.+"
+                        title="Include http:// or https:// in the URL" />
                 </div>
-                
-                <button className="btn btn-outline-primary customColor mt-2">Update the post</button>
+                <div className="d-flex justify-content-between btn-div-create">
+                <button className="btn btn-outline-primary customColor s-button">Update the post</button>
+                <p className="s-button mt-2 btn-outline-primary edit-cancel" onClick={navigateBack}> Cancel </p>
+                </div>
 
             </form>
-            <button onClick={deletePost}>Delete</button>
+
+
+            <button className="btn danger btn-delete" onClick={deletePost}>Delete</button>
 
         </div>
     )

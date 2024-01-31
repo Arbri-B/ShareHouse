@@ -11,7 +11,7 @@ const WelcomePage = () => {
                 <h2>Welcome to ShareHouse</h2>
                 <h4>Find your optimal living arrangements!</h4>
                 <p>In order to proceed, please</p>
-                <Link to={'/login'}>Login</Link> <p>or</p> <Link to={'register'}>Register</Link>
+                <Link className="wel-log" to={'/login'}>Login</Link> <p>or</p> <Link className="wel-log" to={'register'}>Register</Link>
             </div>
 
         </div>

@@ -46,7 +46,7 @@ const AllPostsNew = (props) => {
                                             <p className="card-text-desc">{post.description}</p>
                                             {
                                                 userId == post.userId ?
-                                                    <Link className="card-button" to={`/post/edit/${post._id}`}>Edit</Link> :
+                                                    <Link className="card-title single-card-edit"to={`/post/edit/${post._id}`}>Edit</Link> :
                                                     null
                                             }
                                             </div>

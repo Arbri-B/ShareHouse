@@ -27,7 +27,7 @@ const DisplayOne = (props) => {
     }, [id]);
 
     const mapContainerStyle = {
-        width: "500px",
+        width: "80%",
         height: "200px",
     };
 
@@ -49,7 +49,7 @@ const DisplayOne = (props) => {
                     null
             }
                 </div>
-                <img className="single-card-img" src={post.imageUrl} alt={post.title} width="300" height="200" />
+                <img className="single-card-img" src={post.imageUrl} alt={post.title}/>
             </div>
 
             <div className="single-map">

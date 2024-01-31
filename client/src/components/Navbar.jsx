@@ -20,7 +20,7 @@ const Navbar =() => {
 
     return (
         <nav className="main-nav d-flex justify-content-between ">
-            <h3>ShareHouse</h3>
+            <Link className="nav-home" to={`/dashboard`}>ShareHouse</Link>
             <div className="nav-btn-holder d-flex justify-content-between">
             <Link className=" btn btn-outline-primary custom-color" to={'/post/new'}>Create a new post</Link>
             <button className=" btn btn-outline-primary custom-color" onClick={handleLogout}>Logout</button>

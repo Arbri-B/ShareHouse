@@ -2,7 +2,7 @@ const Post = require('../models/post.model');
 
 async function getLatLongFromAddress(address) {
     try {
-        const apiKey = 'AIzaSyDNOnnW2lR3qZJqjZ8ZO2w4K0ajm-zmyGA'; // Replace with your API key
+        const apiKey = 'AIzaSyDNOnnW2lR3qZJqjZ8ZO2w4K0ajm-zmyGA'; 
         const apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
             const response = await fetch(apiUrl);

@@ -37,7 +37,7 @@ const Login = () => {
                     <button className='s-button' type="submit">Login</button>
                 </form>
                 </div>
-                <Link to={'/register'}>Dont have an account? Register here!</Link>
+                <Link className="wel-log" to={'/register'}>Dont have an account? Register here!</Link>
             </div>
 
             
