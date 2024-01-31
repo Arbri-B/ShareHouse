@@ -29,7 +29,7 @@ async function getLatLongFromAddress(address) {
         };
     } catch (error) {
         console.error(error);
-        throw new Error('Unable to fetch geocoding data');
+        return null;
     }
 }
 
