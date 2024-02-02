@@ -40,7 +40,7 @@ const AllPostsNew = (props) => {
                                         <div className="card-body d-flex justify-content-around">
                                             <div className="card-text">
                                             <Link className="card-title" to={`/post/${post._id}`}>{post.title}</Link>
-
+                                            <p>Hello</p>
                                             <h6 className="card-subtitle mb-2 text-muted"></h6>
                                             <p className="card-text-add">{post.address}</p>
                                             <p className="card-text-desc">{post.description}</p>
