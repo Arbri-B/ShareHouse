@@ -41,6 +41,8 @@ const DisplayOne = (props) => {
             <div className=" single-card d-flex justify-content-between align-items-center">
                 <div className="single-card-text">
                     <h1>{post.title}</h1>
+                    <p>Occupants: {post.totalOccupants}</p>
+                    <p>Free Spots:{post.freeSpots}</p>
                     <h4>{post.address}</h4>
                     <p>{post.description}</p>
                     {

@@ -8,6 +8,8 @@ const EditPost = (props) => {
     const [postCreatorId, setPostCreatorId] = useState("");
 
     const [title, setTitle] = useState("");
+    const [totalOccupants, setTotalOccupants] = useState(1);
+    const [freeSpots, setFreeSpots] = useState(1);
     const [description, setDescription] = useState("");
     const [address, setAddress] = useState("");
     const [imageUrl, setImageUrl] = useState("");
@@ -24,6 +26,8 @@ const EditPost = (props) => {
                 setPost(res.data.post);
                 setPostCreatorId(res.data.post.userId)
                 setTitle(res.data.post.title)
+                setTotalOccupants(res.data.post.totalOccupants)
+                setFreeSpots(res.data.post.freeSpots)
                 setAddress(res.data.post.address)
                 setDescription(res.data.post.description)
                 setImageUrl(res.data.post.imageUrl)
@@ -43,7 +47,9 @@ const EditPost = (props) => {
         else {
             if (userId == postCreatorId) {
                 axios.put(`http://localhost:8000/api/post/${id}`, {
-                    title,    // this is shortcut syntax for firstName: firstName,
+                    title,
+                    totalOccupants,
+                    freeSpots,
                     address,
                     description,
                     imageUrl
@@ -55,6 +61,8 @@ const EditPost = (props) => {
                         console.log(res); // always console log to get used to tracking your data!
                         console.log(res.data);
                         setTitle("");
+                        setTotalOccupants(1);
+                        setFreeSpots(1);
                         setAddress("");
                         setDescription("");
                         setImageUrl("")
@@ -110,6 +118,16 @@ const EditPost = (props) => {
                     <p className="text-danger">The title should be 5 characters or more</p> :
                     null
                 }
+
+                <div>
+                    <label className="form-label">Numer of occupants :</label>
+                    <input className="form-control" type="number" min={1} max={5} value={totalOccupants} onChange={(e) => setTotalOccupants(e.target.value)} />
+                </div>
+
+                <div>
+                    <label className="form-label">Numer of free spots :</label>
+                    <input className="form-control" type="number" min={1} max={5} value={freeSpots} onChange={(e) => setFreeSpots(e.target.value)} />
+                </div>
                 <div>
                     <label className="form-label">Address :</label>
                     <textarea className="form-control" type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
@@ -132,8 +150,8 @@ const EditPost = (props) => {
                         title="Include http:// or https:// in the URL" />
                 </div>
                 <div className="d-flex justify-content-between btn-div-create">
-                <button className="btn btn-outline-primary customColor s-button">Update the post</button>
-                <p className="s-button mt-2 btn-outline-primary edit-cancel" onClick={navigateBack}> Cancel </p>
+                    <button className="btn btn-outline-primary customColor s-button">Update the post</button>
+                    <p className="s-button mt-2 btn-outline-primary edit-cancel" onClick={navigateBack}> Cancel </p>
                 </div>
 
             </form>

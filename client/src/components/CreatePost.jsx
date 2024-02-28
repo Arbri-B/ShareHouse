@@ -6,6 +6,8 @@ import { useAuth } from '../AuthContext';
 const CreatePost = (props) => {
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
+    const [totalOccupants, setTotalOccupants] = useState(1);
+    const [freeSpots, setFreeSpots] = useState(1);
     const [description, setDescription] = useState("");
     const [address, setAddress] = useState("");
     const [imageUrl, setImageUrl] = useState("");
@@ -22,9 +24,13 @@ const CreatePost = (props) => {
         try {
             if (title.length < 5 || address.length < 5 || description.length < 5) {
                 setErrorMessage('Your form has some unsolved issues!');
+
+                
             } else {
                 console.log(
                     title,
+                    totalOccupants,
+                    freeSpots,
                     address,
                     description,
                     imageUrl,
@@ -32,6 +38,8 @@ const CreatePost = (props) => {
                 )
                 axios.post('http://localhost:8000/api/post', {
                     title,
+                    totalOccupants,
+                    freeSpots,
                     address,
                     description,
                     imageUrl,
@@ -62,6 +70,17 @@ const CreatePost = (props) => {
                         <p className="text-danger">The title should be 5 characters or more</p>
                     }
                 </div>
+                
+                <div>
+                    <label className="form-label">Numer of occupants :</label>
+                    <input className="form-control" type="number" min={1} max={5} value={totalOccupants} onChange={(e) => setTotalOccupants(e.target.value)} />
+                </div>
+
+                <div>
+                    <label className="form-label">Numer of free spots :</label>
+                    <input className="form-control" type="number" min={1} max={5} value={freeSpots} onChange={(e) => setFreeSpots(e.target.value)} />
+                </div>
+
                 <div>
                     <label className="form-label">Address :</label>
                     <textarea className="form-control" value={address} onChange={(e) => setAddress(e.target.value)} />
