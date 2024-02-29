@@ -6,6 +6,7 @@ import { useAuth } from '../AuthContext';
 const CreatePost = (props) => {
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
+    const [preferedGender, setPreferedGender] =useState("");
     const [totalOccupants, setTotalOccupants] = useState(1);
     const [freeSpots, setFreeSpots] = useState(1);
     const [description, setDescription] = useState("");
@@ -29,6 +30,7 @@ const CreatePost = (props) => {
             } else {
                 console.log(
                     title,
+                    preferedGender,
                     totalOccupants,
                     freeSpots,
                     address,
@@ -38,6 +40,7 @@ const CreatePost = (props) => {
                 )
                 axios.post('http://localhost:8000/api/post', {
                     title,
+                    preferedGender,
                     totalOccupants,
                     freeSpots,
                     address,
@@ -69,6 +72,16 @@ const CreatePost = (props) => {
                     {title.length > 0 && title.length < 5 &&
                         <p className="text-danger">The title should be 5 characters or more</p>
                     }
+                </div>
+
+                <div>
+                    <label className="form-label">Prefered Gender :</label>
+                    <select value={preferedGender} onChange={(e) => setPreferedGender(e.target.value)}>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Coed">Coed</option>
+                    </select>
                 </div>
                 
                 <div>

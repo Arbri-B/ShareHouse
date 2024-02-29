@@ -6,6 +6,12 @@ const PostSchema = new mongoose.Schema({
         minLength: [5, 'The title should be more than 5 characters'],
         required: [true, 'The title is required']
     },
+    preferedGender: {
+        type: String,
+        default: "Male",
+        enum: ["Male" , "Female", "Coed"],
+        required: [true, "Prefered gender is required"]
+    },
     totalOccupants: {
         type: Number,
         default: 1,

@@ -8,6 +8,7 @@ const EditPost = (props) => {
     const [postCreatorId, setPostCreatorId] = useState("");
 
     const [title, setTitle] = useState("");
+    const [preferedGender, setPreferedGender] = useState("");
     const [totalOccupants, setTotalOccupants] = useState(1);
     const [freeSpots, setFreeSpots] = useState(1);
     const [description, setDescription] = useState("");
@@ -26,6 +27,7 @@ const EditPost = (props) => {
                 setPost(res.data.post);
                 setPostCreatorId(res.data.post.userId)
                 setTitle(res.data.post.title)
+                setPreferedGender(res.data.post.preferedGender)
                 setTotalOccupants(res.data.post.totalOccupants)
                 setFreeSpots(res.data.post.freeSpots)
                 setAddress(res.data.post.address)
@@ -48,6 +50,7 @@ const EditPost = (props) => {
             if (userId == postCreatorId) {
                 axios.put(`http://localhost:8000/api/post/${id}`, {
                     title,
+                    preferedGender,
                     totalOccupants,
                     freeSpots,
                     address,
@@ -61,6 +64,7 @@ const EditPost = (props) => {
                         console.log(res); // always console log to get used to tracking your data!
                         console.log(res.data);
                         setTitle("");
+                        setPreferedGender("");
                         setTotalOccupants(1);
                         setFreeSpots(1);
                         setAddress("");
@@ -118,6 +122,16 @@ const EditPost = (props) => {
                     <p className="text-danger">The title should be 5 characters or more</p> :
                     null
                 }
+
+                <div>
+                    <label className="form-label">Prefered Gender :</label>
+                    <select value={preferedGender} onChange={(e) => setPreferedGender(e.target.value)}>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Coed">Coed</option>
+                    </select>
+                </div>
 
                 <div>
                     <label className="form-label">Numer of occupants :</label>
