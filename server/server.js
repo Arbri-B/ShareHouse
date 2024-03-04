@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const socket = require('socket.io');
 const app = express();
 const cookieParser = require('cookie-parser');
 const multer = require('multer')
@@ -26,4 +27,13 @@ require('./routes/user.routes')(app);
 app.listen(8000, () => {
     console.log("Listening at Port 8000")
 })
+
+const io = socket(server, {
+    cors: {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['*'],
+        credentials: true,
+    }
+});
 

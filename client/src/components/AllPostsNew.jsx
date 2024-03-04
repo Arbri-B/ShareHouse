@@ -9,6 +9,13 @@ import InputGroup from 'react-bootstrap/InputGroup';
 const AllPostsNew = (props) => {
     const [posts, setPosts] = useState([])
     const [search, setSearch] = useState("")
+
+    const [displayAll, setDisplayAll] = useState(true);
+    const [displayFemale, setDisplayFemale] = useState(false);
+    const [displayCoed, setDisplayCoed] = useState(false);
+    const [displayMale, setDisplayMale] = useState(false);
+    const [filteredPosts, setFilteredPosts] = useState([]);
+
     const userId = localStorage.getItem('userId');
 
     useEffect(() => {
@@ -18,13 +25,36 @@ const AllPostsNew = (props) => {
             .then((res) => {
                 console.log(res.data);
                 setPosts(res.data.posts);
+                setFilteredPosts(res.data.posts);
             })
             .catch((err) => {
                 console.log(err);
             })
-
-
     }, [])
+
+    useEffect(() => {
+        
+        if (displayAll) {
+            setFilteredPosts(posts);
+        } else if (displayFemale) {
+            setFilteredPosts(posts.filter(post => post.preferedGender === 'Female'));
+        } else if (displayCoed) {
+            setFilteredPosts(posts.filter(post => post.preferedGender === 'Coed'));
+        } else if (displayMale) {
+            setFilteredPosts(posts.filter(post => post.preferedGender === 'Male'));
+        }
+    }, [displayAll, displayFemale, displayCoed, displayMale, posts]);
+
+    useEffect(() => {
+        
+        const searchResults = posts.filter(post =>
+            post.title.toLowerCase().includes(search.toLowerCase()) ||
+            post.description.toLowerCase().includes(search.toLowerCase()) ||
+            post.preferedGender.toLowerCase().includes(search.toLowerCase()) ||
+            post.address.toLowerCase().includes(search.toLowerCase())
+        );
+        setFilteredPosts(searchResults);
+    }, [search, posts]);
 
 
     return (
@@ -43,11 +73,17 @@ const AllPostsNew = (props) => {
                             />
                         </InputGroup>
                     </Form>
+
+                    <div>
+                        <button onClick={() => { setDisplayAll(true); setDisplayFemale(false); setDisplayCoed(false); setDisplayMale(false); }}>All</button>
+                        <button onClick={() => { setDisplayAll(false); setDisplayFemale(true); setDisplayCoed(false); setDisplayMale(false); }}>Female</button>
+                        <button onClick={() => { setDisplayAll(false); setDisplayFemale(false); setDisplayCoed(false); setDisplayMale(true); }}>Male</button>
+                        <button onClick={() => { setDisplayAll(false); setDisplayFemale(false); setDisplayCoed(true); setDisplayMale(false); }}>Coed</button>
+                    </div>
                     <div className="col">
                         {
-                            posts.length > 0 ?
-                            
-                                posts.map((post, index) => {
+                            filteredPosts.length > 0 ? (
+                                filteredPosts.map((post, index) => {
                                     return (
 
                                         <div key={index} className="card">
@@ -70,7 +106,7 @@ const AllPostsNew = (props) => {
                                         </div>
 
                                     )
-                                })
+                                }))
                                 :
                                 <div className="w-100">
                                     <div className="card text-center w-100">
