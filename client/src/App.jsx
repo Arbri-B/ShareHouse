@@ -9,12 +9,33 @@ import Register from './components/Register';
 import Dashboard from './components/AllPostsNew';
 import EditPost from './components/EditPost';
 import SinglePost from './components/SinglePost';
+import Form from './components/Form';
 import { AuthProvider, useAuth } from './AuthContext';
+import io from 'socket.io-client';
+
 
 import WelcomePage from './components/WelcomePage';
 function App() {
   const { user } = useAuth();
   const token = localStorage.getItem('token');
+
+  const [socket] = useState(() => io(':8000'));
+  const [isConnected, setIsConnected] = useState(socket.connected);
+  const [username, setUsername] = useState('');
+
+useEffect(() => {
+  console.log('Running');
+  socket.on('connect', () => {
+    console.log('HERE');
+    setIsConnected(true);
+  });
+
+  return() => {
+    socket.disconnect(true)
+  };
+
+},[])
+
   return (
     <BrowserRouter>
       <Routes>
@@ -26,6 +47,7 @@ function App() {
             <Route path='/post/:id' element={<SinglePost user={user} />} />
             <Route path='/post/new' element={<CreatePost user={user} />} />
             <Route path='/post/edit/:id' element={<EditPost user={user} />} />
+            <Route path='/chatrooms' element={<Form user={user} username={username} setUsername={setUsername} socket={socket} />} />
 
 
           </>

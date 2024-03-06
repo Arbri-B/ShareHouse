@@ -45,4 +45,9 @@ io.on('connection', socket => {
     socket.on('disconnect', () => {
         console.log('User disconnected')
     })
+
+    socket.on('join-server', data => {
+        console.log('is this working??',data);
+    })
 })
+

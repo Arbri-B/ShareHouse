@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import axios from 'axios';
 import { useAuth } from '../AuthContext';
+import Navbar from "./Navbar";
+
 
 const CreatePost = (props) => {
     const navigate = useNavigate();
@@ -60,6 +62,8 @@ const CreatePost = (props) => {
     };
 
     return (
+        <>
+        <Navbar />
         <div className="px-3 create-main">
             
             <h1 className="text-center p-2">Create a Post</h1>
@@ -119,6 +123,7 @@ const CreatePost = (props) => {
                 </div>
             </form>
         </div>
+        </>
     );
 };
 

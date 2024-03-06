@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 const EditPost = (props) => {
 
@@ -105,6 +106,8 @@ const EditPost = (props) => {
 
 
     return (
+        <>
+        <Navbar />
         <div className="px-3 single-main">
             <h1 className="text-center p-2">Update Post</h1>
             {
@@ -174,6 +177,7 @@ const EditPost = (props) => {
             <button className="btn danger btn-delete" onClick={deletePost}>Delete</button>
 
         </div>
+        </>
     )
 }
 
