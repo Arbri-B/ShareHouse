@@ -23,7 +23,7 @@ const Navbar =() => {
             <Link className="nav-home" to={`/dashboard`}>ShareHouse</Link>
             <div className="nav-btn-holder d-flex justify-content-between">
             <Link className=" btn btn-outline-primary custom-color" to={'/post/new'}>Create a new post</Link>
-            <Link className=" btn btn-outline-primary custom-color" to={'/chatrooms'}>Chatrooms</Link>
+            <Link className=" btn btn-outline-primary custom-color" to={'/chatform'}>Chatrooms</Link>
             <button className=" btn btn-outline-primary custom-color" onClick={handleLogout}>Logout</button>
             </div>
         </nav>

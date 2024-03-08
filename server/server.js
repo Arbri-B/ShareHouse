@@ -39,6 +39,8 @@ const io = socket(server, {
     }
 });
 
+let users = []
+
 io.on('connection', socket => {
     console.log(socket.id);
 
@@ -46,8 +48,12 @@ io.on('connection', socket => {
         console.log('User disconnected')
     })
 
-    socket.on('join-server', data => {
-        console.log('is this working??',data);
+    socket.on('join-server', username => {
+        console.log('USERNAME',username);
+        let newUser = {id:socket.id, username:username}
+        users.push(newUser)
+        console.log(users);
+        io.emit('new-user-joined', users)
     })
 })
 

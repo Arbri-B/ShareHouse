@@ -7,7 +7,8 @@ const Form = (props) => {
 
     const joinServer = (e) => {
         e.preventDefault();
-        socket.emit('join-server', username)
+        socket.emit('join-server', username);
+        navigate('/chatroom');
     }
 
     return(
