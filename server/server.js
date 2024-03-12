@@ -55,5 +55,9 @@ io.on('connection', socket => {
         console.log(users);
         io.emit('new-user-joined', users)
     })
+    socket.on('send-message', data=>{
+        console.log(data);
+        io.emit('send-message-to-all-clients', data)
+    })
 })
 
